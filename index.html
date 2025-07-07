@@ -1,23 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>REYMARK INDOC - Portfolio</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
-
-  <style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REYMARK INDOC - Portfolio</title>  <!-- Google Fonts -->  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;600&display=swap" rel="stylesheet" />  <!-- tsParticles CDN -->  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.3.0/tsparticles.bundle.min.js"></script>  <style>
     :root {
-      --bg-light: linear-gradient(135deg, #f9d3ff, #d0f4de, #c8e8ff);
-      --bg-dark: linear-gradient(135deg, #1e1e1e, #2d2d2d, #3a3a3a);
-      --text-light: #3d3d3d;
-      --text-dark: #f1f1f1;
-      --card-light: rgba(255, 255, 255, 0.95);
-      --card-dark: rgba(40, 40, 40, 0.9);
-      --skill-light: #eaeaff;
-      --skill-dark: #444;
+      --bg-light: linear-gradient(135deg, #ffecd2, #fcb69f);
+      --bg-dark: linear-gradient(135deg, #2c1e16, #3a2c23);
+      --text-light: #5a3e36;
+      --text-dark: #f5f2f0;
+      --card-light: rgba(255, 250, 240, 0.95);
+      --card-dark: rgba(60, 45, 35, 0.9);
+      --skill-light: #fff5e1;
+      --skill-dark: #3a2c23;
     }
 
     * {
@@ -28,23 +22,29 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      min-height: 100vh;
+      background: var(--bg-light);
+      color: var(--text-light);
       display: flex;
       justify-content: center;
       align-items: center;
+      min-height: 100vh;
       text-align: center;
       padding: 30px;
       transition: background 0.6s ease;
-      animation: bgFade 10s ease-in-out infinite alternate;
-    }
-
-    @keyframes bgFade {
-      0% { background: var(--bg-light); }
-      100% { background: var(--bg-light); }
     }
 
     body.dark {
       background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    #tsparticles {
+      position: fixed;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
     }
 
     .container {
@@ -52,41 +52,34 @@
       padding: 40px;
       border-radius: 20px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      max-width: 600px;
+      max-width: 650px;
       width: 100%;
-      animation: fadeIn 1.5s ease forwards;
-      opacity: 0;
       transition: background 0.5s ease, color 0.5s ease;
     }
 
     body.dark .container {
       background-color: var(--card-dark);
-      color: var(--text-dark);
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; transform: translateY(0); }
-      from { opacity: 0; transform: translateY(20px); }
     }
 
     h1 {
+      font-family: 'Playfair Display', serif;
       font-size: 2.8em;
-      color: var(--text-light);
       margin-bottom: 10px;
     }
 
-    body.dark h1 {
-      color: var(--text-dark);
-    }
-
-    p {
+    .typing {
       font-size: 1.1em;
-      color: #555;
       margin-bottom: 25px;
+      min-height: 50px;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid;
+      animation: typing 4s steps(60, end) forwards;
     }
 
-    body.dark p {
-      color: #ccc;
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
     }
 
     .profile-img {
@@ -97,46 +90,38 @@
       border: 4px solid #fff;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       margin-bottom: 25px;
-      transition: transform 0.4s ease;
-    }
-
-    .profile-img:hover {
-      transform: scale(1.05);
     }
 
     .skills {
       margin: 30px 0;
     }
 
-    .skills h2 {
-      font-size: 1.5em;
-      color: #444;
-      margin-bottom: 15px;
-    }
-
-    body.dark .skills h2 {
-      color: #eee;
-    }
-
     .skill-item {
-      background: var(--skill-light);
-      display: inline-block;
-      padding: 10px 20px;
-      margin: 5px;
-      border-radius: 20px;
+      margin: 10px 0;
+      text-align: left;
+    }
+
+    .skill-name {
       font-weight: bold;
-      color: #5a5a5a;
-      font-size: 0.95em;
-      transition: background 0.3s;
+      margin-bottom: 5px;
     }
 
-    .skill-item:hover {
-      background: #d0cfff;
+    .skill-bar {
+      width: 100%;
+      height: 14px;
+      background: var(--skill-light);
+      border-radius: 10px;
+      overflow: hidden;
     }
 
-    body.dark .skill-item {
+    .skill-fill {
+      height: 100%;
+      background: #ffa07a;
+      border-radius: 10px;
+    }
+
+    body.dark .skill-bar {
       background: var(--skill-dark);
-      color: #eee;
     }
 
     .btn {
@@ -144,121 +129,105 @@
       font-size: 1em;
       font-weight: bold;
       color: white;
-      background: linear-gradient(45deg, #ff6b81, #6a82fb);
+      background: linear-gradient(45deg, #f57c00, #d84315);
       border: none;
       border-radius: 30px;
       cursor: pointer;
       text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
+      margin: 10px;
       display: inline-block;
-      margin-top: 10px;
     }
 
-    .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    .toggle-theme {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #8d6e63;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
     }
 
     footer {
       margin-top: 30px;
       font-size: 0.8em;
-      color: #888;
     }
 
-    body.dark footer {
-      color: #aaa;
+    #preloader {
+      background: #fff8f0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
     }
-
-    /* Toggle button */
-    .toggle-theme {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      padding: 10px 15px;
-      background: #333;
-      color: white;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.9em;
-      z-index: 999;
-      transition: background 0.3s;
-    }
-
-    .toggle-theme:hover {
-      background: #555;
-    }
-
-    @media (max-width: 500px) {
-      h1 {
-        font-size: 2em;
-      }
-      .btn {
-        width: 100%;
-      }
-    }
-  </style>
-</head>
+  </style></head>
 <body>
-  <!-- Dark Mode Toggle Button -->
-  <div class="toggle-theme" onclick="toggleTheme()">🌙 Dark Mode</div>
-
-  <div class="container">
-    <!-- Profile Image -->
-    <img 
-      src="https://scontent.fcgy1-1.fna.fbcdn.net/v/t39.30808-6/507863058_633215983064495_8552835193298230955_n.jpg?stp=dst-webp_e15_q70_s720x755_tt1_u&_nc_eui2=AeGfkVnmqSpXBxiBKdcNv2P4UumH4lVEXBlS6YfiVURcGQtRvxLLj08ABWW7cHRrcnAOhOtUF-5DW0LVZL_gXgVo&_nc_cid=1066&_nc_ad=z-m&_nc_rml=0&_nc_ht=scontent.fcgy1-1.fna&_nc_cat=102&_nc_ohc=PPeFESTaqCEQ7kNvwHW74Vr&_nc_gid=eScCNlE_V6QAdNzgxmBeZA&ccb=1-7&_nc_sid=6ee11a&oh=00_AfRphTpcYA0IMQsk3fskh8LYOT7AHSpJdvwDwBlTTuIX3g&oe=68712210" 
-      alt="REYMARK INDOC Profile Photo"
-      class="profile-img"
-    />
-
+  <!-- Preloader -->
+  <div id="preloader">Loading...</div>  <!-- Particles -->  <div id="tsparticles"></div>  <!-- Theme Toggle -->  <div class="toggle-theme" onclick="toggleTheme()">🌙 Dark Mode</div>  <div class="container">
+    <img src="https://scontent.fcgy1-1.fna.fbcdn.net/v/t39.30808-6/507863058_633215983064495_8552835193298230955_n.jpg?..." alt="REYMARK INDOC Profile Photo" class="profile-img" />
     <h1>REYMARK INDOC</h1>
-    <p>Hi! I'm a small web developer, i do web stuffs, welcome to my small portfolio ☺</p>
+    <p class="typing">"I don't just build websites — I create doors where none existed before."</p><div class="skills">
+  <h2>My Skills</h2>
 
-    <!-- Skills Section -->
-    <div class="skills">
-      <h2>My Skills</h2>
-      <div class="skill-item">Website Explorer</div>
-      <div class="skill-item">Phisher</div>
-      <div class="skill-item">Web Developer</div>
-    </div>
-
-    <!-- Facebook Button -->
-    <a
-      class="btn"
-      href="https://www.facebook.com/chkpremyum"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Visit My Facebook Account
-    </a>
-
-    <!-- Chatbot Button -->
-    <a
-      class="btn"
-      href="https://www.facebook.com/profile.php?id=61577762998642"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Chat with My Chatbot
-    </a>
-
-    <footer>
-      &copy; 2025 CHK • DESIGNED WITH ❤
-    </footer>
+  <div class="skill-item">
+    <div class="skill-name">Website Explorer (80%)</div>
+    <div class="skill-bar"><div class="skill-fill" style="width: 80%;"></div></div>
   </div>
 
-  <script>
+  <div class="skill-item">
+    <div class="skill-name">Phisher (67%)</div>
+    <div class="skill-bar"><div class="skill-fill" style="width: 67%;"></div></div>
+  </div>
+
+  <div class="skill-item">
+    <div class="skill-name">Web Developer (91%)</div>
+    <div class="skill-bar"><div class="skill-fill" style="width: 91%;"></div></div>
+  </div>
+
+  <div class="skill-item">
+    <div class="skill-name">PPT Maker (100%)</div>
+    <div class="skill-bar"><div class="skill-fill" style="width: 100%;"></div></div>
+  </div>
+
+  <div class="skill-item">
+    <div class="skill-name">Photo Editor (89%)</div>
+    <div class="skill-bar"><div class="skill-fill" style="width: 89%;"></div></div>
+  </div>
+
+  <div class="skill-item">
+    <div class="skill-name">Word Doc Maker (74%)</div>
+    <div class="skill-bar"><div class="skill-fill" style="width: 74%;"></div></div>
+  </div>
+</div>
+
+<a class="btn" href="https://www.facebook.com/chkpremyum" target="_blank">Visit My Facebook</a>
+<a class="btn" href="https://www.facebook.com/profile.php?id=61577762998642" target="_blank">Chat with My Chatbot</a>
+
+<footer>&copy; 2025 CHK • Designed with 🍂</footer>
+
+  </div>  <script>
+    // Preloader
+    window.addEventListener('load', () => {
+      document.getElementById('preloader').style.display = 'none';
+    });
+
     // Dark Mode Toggle
     const body = document.body;
     const toggleBtn = document.querySelector('.toggle-theme');
 
     function toggleTheme() {
       body.classList.toggle('dark');
-      const isDark = body.classList.contains('dark');
-      toggleBtn.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      toggleBtn.textContent = body.classList.contains('dark') ? '☀️ Light Mode' : '🌙 Dark Mode';
+      localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
     }
 
-    // On Load: Check stored theme
+    // Load Theme
     window.onload = () => {
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'dark') {
@@ -267,10 +236,29 @@
       }
     }
 
-    // Handle image error fallback
-    document.querySelector('.profile-img').addEventListener('error', () => {
-      alert("Your profile image couldn't be loaded. Please check the image link.");
+    // tsParticles Init
+    tsParticles.load("tsparticles", {
+      fullScreen: { enable: false },
+      background: { color: { value: "transparent" } },
+      particles: {
+        number: { value: 50 },
+        color: { value: body.classList.contains('dark') ? '#ffcc99' : '#7c4d00' },
+        shape: { type: "circle" },
+        opacity: { value: 0.3 },
+        size: { value: { min: 2, max: 4 } },
+        move: { enable: true, speed: 1, direction: "none", outModes: { default: "out" } }
+      },
+      interactivity: {
+        events: {
+          onHover: { enable: true, mode: "repulse" },
+          onClick: { enable: true, mode: "push" }
+        },
+        modes: {
+          repulse: { distance: 60 },
+          push: { quantity: 2 }
+        }
+      },
+      detectRetina: true
     });
-  </script>
-</body>
-</html>
+  </script></body>
+  </html>
